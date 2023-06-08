@@ -280,6 +280,8 @@ def main(**kwargs):
         sr_module = 'training.superresolution.SuperresolutionHybrid4X'
     elif c.training_set_kwargs.resolution == 128:
         sr_module = 'training.superresolution.SuperresolutionHybrid2X'
+    elif c.training_set_kwargs.resolution == 1024:
+        sr_module = 'training.superresolution.SuperresolutionHybrid16X'
     
     if opts.sr_module != None:
         sr_module = opts.sr_module
@@ -301,7 +303,7 @@ def main(**kwargs):
         'cfg_name': opts.cfg, # name of the cfg
     }
 
-    if opts.cfg == 'mads' or 'aist' in opts.cfg or opts.cfg == 'surreal' or opts.cfg == 'aist_rescaled' or opts.cfg == 'surreal_new':
+    if opts.cfg == 'mads' or 'aist' in opts.cfg or opts.cfg == 'surreal' or opts.cfg == 'aist_rescaled' or opts.cfg == 'surreal_new' or opts.cfg == 'shhq' or opts.cfg == 'deepfashion':
         rendering_options.update({
             'depth_resolution': 64,
             'depth_resolution_importance': 64,
@@ -340,6 +342,24 @@ def main(**kwargs):
                 'box_warp': 0.8,
             })
             c.D_kwargs.disc_c_noise = 1
+        if opts.cfg == 'shhq':
+            rendering_options.update({
+                'ray_start': 8,
+                'ray_end': 12,
+                'white_back': True,
+                'box_warp': 2,
+            })
+            c.D_kwargs.disc_c_noise = 1
+            c.loss_kwargs.filter_mode = 'none'
+        if opts.cfg == 'deepfashion':
+            rendering_options.update({
+                'ray_start': 8,
+                'ray_end': 14,
+                'white_back': True,
+                'box_warp': 3,
+            })
+            c.D_kwargs.disc_c_noise = 1
+            c.loss_kwargs.filter_mode = 'none'
     else:
         assert False, "Need to specify config"
 

@@ -153,7 +153,7 @@ def calc_metrics(ctx, network_pkl, metrics, data, mirror, gpus, verbose):
         network_dict = legacy.load_network_pkl(f)
         args.G = network_dict['G_ema'] # subclass of torch.nn.Module
 
-    old_architecture = True
+    old_architecture = False
     if old_architecture:
         print(f'Copying params and buffers into modern architecture')
         init_kwargs = copy.deepcopy(args.G.init_kwargs)

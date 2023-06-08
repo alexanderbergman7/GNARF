@@ -116,6 +116,12 @@ class ImportanceRenderer(torch.nn.Module):
             avg_betas = torch.from_numpy(np.array(consts.AIST_BETAS_AVG)[None, ...]).float().contiguous()
             avg_transl = torch.from_numpy(np.array(consts.AIST_TRANSL)[None, ...]).float().contiguous()
             avg_scale = torch.from_numpy(np.array(consts.AIST_SCALE)).float().contiguous()
+        elif rendering_kwargs['cfg_name'] == 'shhq' or rendering_kwargs['cfg_name'] == 'deepfashion':
+            avg_body_pose = torch.from_numpy(np.array(consts.SHHQ_BODYPOSE_AVG)[None, ...]).float().contiguous()
+            avg_orient = torch.from_numpy(np.array(consts.SHHQ_ORIENT_AVG)[None, ...]).float().contiguous()
+            avg_betas = torch.from_numpy(np.array(consts.SHHQ_BETAS_AVG)[None, ...]).float().contiguous()
+            avg_transl = torch.from_numpy(np.array(consts.SHHQ_TRANSL)[None, ...]).float().contiguous()
+            avg_scale = torch.from_numpy(np.array(consts.SHHQ_SCALE)).float().contiguous()
         else:
             print("Using T-pose as canonical pose")
             avg_body_pose = torch.zeros((1, 69)).contiguous()
@@ -178,6 +184,9 @@ class ImportanceRenderer(torch.nn.Module):
                 rendering_options.update({'cam2world': camera_params[0], 'intrinsics': camera_params[1]}) # bs x 4 x 4, bs x 3 x 3
                 ray_start, ray_end = self.get_smpl_min_max_depth(rendering_options, ray_directions, smpl_clip_current.vertices, self.smpl_clip.faces_t)
                 sample_mask = (ray_start[..., None, :] <= ray_end[..., None, :]).expand(-1, -1, rendering_options['depth_resolution'], -1).reshape(batch_size, -1)
+                if not sample_mask.max(dim=-1)[0].all():
+                    sample_mask = None
+                    # print(f'Warning, out of frame SMPL mesh detected!')
         else:
             raise NotImplementedError()
 

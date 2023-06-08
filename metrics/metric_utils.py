@@ -18,7 +18,7 @@ import numpy as np
 import torch
 import dnnlib
 
-from SPIN import process_EG3D_image
+# from SPIN import process_EG3D_image
 import consts
 
 #----------------------------------------------------------------------------

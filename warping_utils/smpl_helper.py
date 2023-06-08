@@ -84,16 +84,21 @@ def get_smpl_data_path(gender = 'm'):
     Gets path to the SMPL data.
     """
     if socket.gethostname() == 'KENI-P5510':
+        assert False
         smpl_data_path = fr'C:\pkellnho\PDT\gnn\multifrequency_representation\data\SMPL\smpl\models\basicmodel_{gender}_lbs_10_207_0_v1.0.0.pkl'
     elif socket.gethostname() == 'tud1003390':
+        assert False
         smpl_data_path = f'/home/petr/projects/data/SMPL/smpl/models/basicmodel_{gender}_lbs_10_207_0_v1.0.0.pkl'
     elif socket.gethostname() == 'awb-desktop':
+        assert False
         smpl_data_path = fr'/home/awb/Data/hgan/SMPL/smpl/models/basicmodel_{gender}_lbs_10_207_0_v1.0.0.pkl'
     elif socket.gethostname() == 'yifita-titan':
+        assert False
         smpl_data_path = os.path.abspath(fr'smpl_utils/data/basicmodel_{gender}_lbs_10_207_0_v1.0.0.pkl')
     else:
-        smpl_data_path = fr'/home/awb/data/SMPL/smpl/models/basicmodel_{gender}_lbs_10_207_0_v1.0.0.pkl'
+        smpl_data_path = fr'/home/awb/data/SMPL/smpl/models/basicmodel_m_lbs_10_207_0_v1.0.0.pkl'
         # smpl_data_path = os.path.abspath(fr'/eg3d/mads/basicmodel_{gender}_lbs_10_207_0_v1.0.0.pkl')
+        # smpl_data_path = fr'/home/awb/data/SMPL/smpl/models/SMPL_NEUTRAL.pkl'
 
     return Path(smpl_data_path)
 
