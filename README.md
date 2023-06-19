@@ -6,7 +6,7 @@ Official implementation for the paper Generative Neural Articulated Radiance Fie
 
 ### Overview
 ```train.py```: Script used to train GNARF model.\
-```visualizer.py```: Script for animating and visualizing a trained GNARF model.\
+```visualizer.py```: Script for animating and visualizing a trained GNARF model. **[CURRENTLY UNTESTED]**\
 ```generate_video.py```: Script to animate a generated result according to a pose file.\
 ```calc_metrics.py```: Script to compute metrics for a specific model checkpoint.
 
