@@ -2,7 +2,8 @@
 Official implementation for the paper Generative Neural Articulated Radiance Fields in NeurIPS 2022.
 #### [Website](http://www.computationalimaging.org/publications/gnarf/) | [Paper](https://arxiv.org/abs/2206.14314) | [Data](https://drive.google.com/drive/folders/1lI-ec9sq4Ffy_2fs-QL2FaVWwBhQxaHt?usp=share_link)
 
-#### NOTE: This repository only contains scripts for training, evaluating, and visualizing human body models. Human face generation and datasets (AIST++, SHHQ, DeepFashion) can be provided upon request.
+#### NOTE: This repository only contains scripts for training, evaluating, and visualizing human body models. Human face generation code / checkpoint and body datasets (AIST++, SHHQ, DeepFashion) can be provided upon request. 
+Contact: alexander.william.bergman@gmail.com
 
 ### Overview
 ```train.py```: Script used to train GNARF model.\
